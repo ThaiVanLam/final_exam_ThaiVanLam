@@ -41,7 +41,7 @@ public class UserRepository {
 			throw new Exception("id này đã tồn tại");
 		}
 
-		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, user_type) VALUES (?, ?, ?)";
+		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, user_type) VALUES (?, ?, ?, ?)";
 		String sqlForCreateMember = "INSERT INTO members (user_id, project_id, skill) VALUES (?, ?, ?)";
 
 		PreparedStatement preparedStatementForCreateUser = jdbcUltis.createPrepareStatement(sqlForCreateUser);
@@ -69,7 +69,7 @@ public class UserRepository {
 			throw new Exception("id này đã tồn tại");
 		}
 
-		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, user_type) VALUES (?, ?, ?)";
+		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, user_type) VALUES (?, ?, ?, ?)";
 		String sqlForCreateLeader = "INSERT INTO leaders (user_id, number_of_project) VALUES (?, ?)";
 
 		PreparedStatement preparedStatementForCreateUser = jdbcUltis.createPrepareStatement(sqlForCreateUser);
