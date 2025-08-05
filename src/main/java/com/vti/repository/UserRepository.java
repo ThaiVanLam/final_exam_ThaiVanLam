@@ -108,4 +108,46 @@ public class UserRepository {
 		preparedStatement.executeUpdate();
 	}
 
+	public void printMemberAndLeaderFromProject(Project project) throws ClassNotFoundException, SQLException {
+		String sqlForLeader = "SELECT * FROM projects p INNER JOIN leaders l ON p.leader_id = l.user_id INNER JOIN users u ON u.id = l.user_id WHERE p.project_id = "
+				+ project.getId();
+		ResultSet resultSetForLeader = jdbcUltis.executeQuery(sqlForLeader);
+
+		System.out.println("In thông tin leader của project có id là: " + project.getId());
+		// In tiêu đề cột
+		System.out.printf("%-20s %-20s %-20s %-20s\n", "leader id", "fullname", "email", "number of project");
+		System.out.println("----------------------------------------");
+		while (resultSetForLeader.next()) {
+			int leaderId = resultSetForLeader.getInt("leader_id");
+			String fullname = resultSetForLeader.getString("fullname");
+			String email = resultSetForLeader.getString("email");
+			int numberOfProject = resultSetForLeader.getInt("number_of_project");
+
+			// In dữ liệu
+			System.out.printf("%-20d %-20s %-20s %-20d\n", leaderId, fullname, email, numberOfProject);
+		}
+
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+
+		String sqlForMember = "SELECT * FROM projects p INNER JOIN members m ON p.project_id = m.project_id INNER JOIN users u ON m.user_id = u.id WHERE p.project_id = "
+				+ project.getId();
+		ResultSet resultSetForMember = jdbcUltis.executeQuery(sqlForMember);
+		System.out.println("In thông tin member của project có id là: " + project.getId());
+		// In tiêu đề cột
+		System.out.printf("%-20s %-20s %-20s %-20s\n", "member id", "fullname", "email", "skill");
+		System.out.println("----------------------------------------");
+		while (resultSetForMember.next()) {
+			int member_id = resultSetForMember.getInt("user_id");
+			String fullname = resultSetForMember.getString("fullname");
+			String email = resultSetForMember.getString("email");
+			String skill = resultSetForMember.getString("skill");
+
+			// In dữ liệu
+			System.out.printf("%-20d %-20s %-20s %-20s\n", member_id, fullname, email, skill);
+		}
+	}
+
 }

@@ -9,6 +9,11 @@ public class Project {
 	private Leader leader;
 	private List<Member> members;
 
+	public Project(int id) {
+		super();
+		this.id = id;
+	}
+
 	public Project(String name, int size, Leader leader, List<Member> members) {
 		super();
 		this.name = name;
