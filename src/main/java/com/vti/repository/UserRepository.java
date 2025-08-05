@@ -116,7 +116,7 @@ public class UserRepository {
 		System.out.println("In thông tin leader của project có id là: " + project.getId());
 		// In tiêu đề cột
 		System.out.printf("%-20s %-20s %-20s %-20s\n", "leader id", "fullname", "email", "number of project");
-		System.out.println("----------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------");
 		while (resultSetForLeader.next()) {
 			int leaderId = resultSetForLeader.getInt("leader_id");
 			String fullname = resultSetForLeader.getString("fullname");
@@ -138,7 +138,7 @@ public class UserRepository {
 		System.out.println("In thông tin member của project có id là: " + project.getId());
 		// In tiêu đề cột
 		System.out.printf("%-20s %-20s %-20s %-20s\n", "member id", "fullname", "email", "skill");
-		System.out.println("----------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------");
 		while (resultSetForMember.next()) {
 			int member_id = resultSetForMember.getInt("user_id");
 			String fullname = resultSetForMember.getString("fullname");
