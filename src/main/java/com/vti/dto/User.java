@@ -32,6 +32,10 @@ public class User {
 		this.userType = userType;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

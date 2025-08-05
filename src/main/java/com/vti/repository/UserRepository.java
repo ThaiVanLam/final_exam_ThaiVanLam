@@ -150,4 +150,19 @@ public class UserRepository {
 		}
 	}
 
+	public User findByEmailAndPassword(String email, String password) throws ClassNotFoundException, SQLException {
+		User user = null;
+		String sql = "SELECT * FROM users WHERE email = " + email + " AND password = " + password;
+		ResultSet resultSet = jdbcUltis.executeQuery(sql);
+		while (resultSet.next()) {
+			int id = resultSet.getInt("id");
+			String fullname = resultSet.getString("fullname");
+			String emailFromDB = resultSet.getString("email");
+			String userType = resultSet.getString("user_type");
+			user = new User(id, fullname, emailFromDB, userType);
+		}
+
+		return user;
+	}
+
 }

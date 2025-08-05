@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.vti.controller.UserController;
 import com.vti.dto.Project;
+import com.vti.dto.User;
 import com.vti.utils.ScannerUtils;
 
 public class ProgramUser {
@@ -31,6 +32,21 @@ public class ProgramUser {
 					int id = ScannerUtils.inputInt();
 					Project project = new Project(id);
 					userController.printMemberAndLeaderFromProject(project);
+					break;
+				case 3:
+					// login
+					System.out.println("Mời bạn login: ");
+					System.out.println("Nhập email để login: ");
+					String email = ScannerUtils.inputString();
+					System.out.println("Nhập password để login: ");
+					String password = ScannerUtils.inputString();
+					User user;
+					user = userController.login(email, password);
+					if (user == null) {
+						throw new Exception("Không tòn tại user này!");
+					}
+					System.out.println("Bạn đã đăng nhập vào user: " + user.getEmail());
+					System.out.println("Loại user là: " + user.getUserType());
 					break;
 
 				default:
