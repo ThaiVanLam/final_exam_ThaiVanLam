@@ -13,8 +13,12 @@ public class ProgramUser {
 	public static void main(String[] args) {
 		try {
 			UserController userController = new UserController();
-			while (true) {
-				System.out.println("Chọn chức năng: ");
+			outterLoop: while (true) {
+				System.out.println("Chọn chức năng tổng quát: ");
+				System.out.println("1.Khởi tạo dữ liệu");
+				System.out.println("2.In thông tin member và leader theo project");
+				System.out.println("3.Đăng nhập");
+				System.out.println("4.Thoát khỏi chương trình");
 				int choice = ScannerUtils.inputInt();
 				switch (choice) {
 				case 1:
@@ -47,8 +51,34 @@ public class ProgramUser {
 					}
 					System.out.println("Bạn đã đăng nhập vào user: " + user.getEmail());
 					System.out.println("Loại user là: " + user.getUserType());
+					String userType = user.getUserType();
+					switch (userType) {
+					case "leader":
+						while (true) {
+							System.out.println("Chức năng trong leader: ");
+							System.out.println("1.Đăng xuất");
+							System.out.println("Chọn chức năng trong leader: ");
+							if (ScannerUtils.inputInt() == 1) {
+								continue outterLoop;
+							}
+						}
+					case "member":
+						while (true) {
+							System.out.println("Chức năng trong member: ");
+							System.out.println("1.Đăng xuất");
+							System.out.println("Chọn chức năng trong member: ");
+							if (ScannerUtils.inputInt() == 1) {
+								continue outterLoop;
+							}
+						}
+					default:
+						break;
+					}
 					break;
 
+				case 4:
+					System.out.println("Thoát khỏi chương trình!");
+					break outterLoop;
 				default:
 					break;
 				}
