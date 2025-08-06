@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.vti.controller.UserController;
+import com.vti.dto.Member;
 import com.vti.dto.Project;
 import com.vti.dto.User;
 import com.vti.utils.ScannerUtils;
@@ -83,8 +84,37 @@ public class ProgramUser {
 							switch (choiceInAdmin) {
 							case 1:
 								System.out.println("Đang ở chức năng tạo tài khoản của employee");
-								System.out.println();
-								break;
+								System.out.println("Nhập id cho employee: ");
+								int idForAdminCreateEmployee = ScannerUtils.inputInt();
+								System.out.println("Nhập fullname cho employee: ");
+								String fullnameForAdminCreateEmployee = ScannerUtils.inputString();
+								System.out.println("Nhập vào email cho employee: ");
+								String emailForAdminCreateEmployee = ScannerUtils.inputString();
+
+								String userTypeForEmployee;
+								System.out.println("mời bạn chọn loại employee muốn thêm: ");
+								System.out.println("1.member");
+								System.out.println("2.leader");
+								System.out.println("chọn loại employee: ");
+								int choiceInAdminTypeOfEmployee = ScannerUtils.inputInt();
+								switch (choiceInAdminTypeOfEmployee) {
+								case 1:
+									userTypeForEmployee = "member";
+									System.out.println("Nhập vào skill cho member: ");
+									String skill = ScannerUtils.inputString();
+									Member member = new Member(idForAdminCreateEmployee, fullnameForAdminCreateEmployee,
+											emailForAdminCreateEmployee, "123456", userTypeForEmployee, skill);
+									break;
+								case 2:
+									userTypeForEmployee = "leader";
+									System.out.println("Nhập vào number of project cho leader: ");
+									int numberOfProject = ScannerUtils.inputInt();
+									break;
+
+								default:
+									break;
+								}
+
 							case 2:
 								System.out.println("Đăng xuất thành công");
 								continue outterLoop;

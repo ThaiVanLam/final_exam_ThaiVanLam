@@ -16,6 +16,11 @@ public class Member extends User {
 		this.project = project;
 	}
 
+	public Member(int id, String fullname, String email, String password, String userType, String skill) {
+		super(id, fullname, email, password, userType);
+		this.skill = skill;
+	}
+
 	public String getSkill() {
 		return skill;
 	}
