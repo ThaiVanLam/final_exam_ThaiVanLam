@@ -166,4 +166,32 @@ public class UserRepository {
 		return user;
 	}
 
+	public void createMemberFromAdmin(Member member) throws Exception {
+		int id = member.getId();
+		if (userDao.isUserIdExist(id) || memberDao.isMemberIdExist(id)) {
+			throw new Exception("id này đã tồn tại");
+		}
+
+		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, password, user_type) VALUES (?, ?, ?, ?, ?)";
+		String sqlForCreateMember = "INSERT INTO members (user_id, skill) VALUES (?, ?)";
+
+		PreparedStatement preparedStatementForCreateUser = jdbcUltis.createPrepareStatement(sqlForCreateUser);
+		PreparedStatement preparedStatementForCreateMember = jdbcUltis.createPrepareStatement(sqlForCreateMember);
+
+		// set parameter for create user
+		preparedStatementForCreateUser.setInt(1, id);
+		preparedStatementForCreateUser.setString(2, member.getFullname());
+		preparedStatementForCreateUser.setString(3, member.getEmail());
+		preparedStatementForCreateUser.setString(4, member.getPassword());
+		preparedStatementForCreateUser.setString(5, "member");
+
+		// set parameter for create member
+		preparedStatementForCreateMember.setInt(1, id);
+		preparedStatementForCreateMember.setString(2, member.getSkill());
+
+		// execute query
+		preparedStatementForCreateUser.executeUpdate();
+		preparedStatementForCreateMember.executeUpdate();
+	}
+
 }

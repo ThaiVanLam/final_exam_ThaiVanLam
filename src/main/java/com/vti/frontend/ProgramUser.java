@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.vti.controller.UserController;
+import com.vti.dto.Leader;
 import com.vti.dto.Member;
 import com.vti.dto.Project;
 import com.vti.dto.User;
@@ -104,16 +105,19 @@ public class ProgramUser {
 									String skill = ScannerUtils.inputString();
 									Member member = new Member(idForAdminCreateEmployee, fullnameForAdminCreateEmployee,
 											emailForAdminCreateEmployee, "123456", userTypeForEmployee, skill);
+									userController.createMember(member);
 									break;
 								case 2:
-									userTypeForEmployee = "leader";
 									System.out.println("Nhập vào number of project cho leader: ");
 									int numberOfProject = ScannerUtils.inputInt();
+									Leader leader = new Leader(idForAdminCreateEmployee, fullnameForAdminCreateEmployee,
+											emailForAdminCreateEmployee, "123456", numberOfProject);
 									break;
 
 								default:
 									break;
 								}
+								break;
 
 							case 2:
 								System.out.println("Đăng xuất thành công");
