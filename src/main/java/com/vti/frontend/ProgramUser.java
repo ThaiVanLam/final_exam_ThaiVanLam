@@ -59,6 +59,7 @@ public class ProgramUser {
 							System.out.println("1.Đăng xuất");
 							System.out.println("Chọn chức năng trong leader: ");
 							if (ScannerUtils.inputInt() == 1) {
+								System.out.println("Đăng xuất thành công");
 								continue outterLoop;
 							}
 						}
@@ -68,7 +69,27 @@ public class ProgramUser {
 							System.out.println("1.Đăng xuất");
 							System.out.println("Chọn chức năng trong member: ");
 							if (ScannerUtils.inputInt() == 1) {
+								System.out.println("Đăng xuất thành công");
 								continue outterLoop;
+							}
+						}
+					case "admin":
+						adminLoop: while (true) {
+							System.out.println("Chức năng trong admin: ");
+							System.out.println("1.Tạo tài khoản");
+							System.out.println("2.Đăng xuất");
+							System.out.println("Chọn chức năng trong admin: ");
+							int choiceInAdmin = ScannerUtils.inputInt();
+							switch (choiceInAdmin) {
+							case 1:
+								System.out.println("Đang ở chức năng tạo tài khoản của employee");
+								System.out.println();
+								break;
+							case 2:
+								System.out.println("Đăng xuất thành công");
+								continue outterLoop;
+							default:
+								break;
 							}
 						}
 					default:
