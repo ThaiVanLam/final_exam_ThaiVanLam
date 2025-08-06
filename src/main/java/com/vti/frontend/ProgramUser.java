@@ -112,6 +112,7 @@ public class ProgramUser {
 									int numberOfProject = ScannerUtils.inputInt();
 									Leader leader = new Leader(idForAdminCreateEmployee, fullnameForAdminCreateEmployee,
 											emailForAdminCreateEmployee, "123456", numberOfProject);
+									userController.createLeader(leader);
 									break;
 
 								default:

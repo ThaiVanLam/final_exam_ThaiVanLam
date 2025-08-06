@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vti.dto.Leader;
 import com.vti.dto.Member;
 import com.vti.dto.Project;
 import com.vti.dto.User;
@@ -49,8 +50,20 @@ public class UserService {
 		if (!fullnameUtils.validateFullname(member.getFullname())) {
 			throw new Exception("Fullname không hợp lệ!");
 		}
-		
+
 		userRepository.createMemberFromAdmin(member);
 
+	}
+
+	public void createLeader(Leader leader) throws Exception {
+		if (!emailUtils.isValidEmail(leader.getEmail())) {
+			throw new Exception("email không hợp lệ!");
+		}
+
+		if (!fullnameUtils.validateFullname(leader.getFullname())) {
+			throw new Exception("Fullname không hợp lệ!");
+		}
+
+		userRepository.createLeaderFromAdmin(leader);
 	}
 }

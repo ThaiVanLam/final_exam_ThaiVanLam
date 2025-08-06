@@ -194,4 +194,31 @@ public class UserRepository {
 		preparedStatementForCreateMember.executeUpdate();
 	}
 
+	public void createLeaderFromAdmin(Leader leader) throws Exception {
+		int id = leader.getId();
+		if (userDao.isUserIdExist(id) || leaderDao.isLeaderIdExist(id)) {
+			throw new Exception("id này đã tồn tại");
+		}
+
+		String sqlForCreateUser = "INSERT INTO users (id, fullname, email, password, user_type) VALUES (?, ?, ?, ?, ?)";
+		String sqlForCreateLeader = "INSERT INTO leaders (user_id, number_of_project) VALUES (?, ?)";
+
+		PreparedStatement preparedStatementForCreateUser = jdbcUltis.createPrepareStatement(sqlForCreateUser);
+		PreparedStatement preparedStatementForCreateLeader = jdbcUltis.createPrepareStatement(sqlForCreateLeader);
+
+		// set parameter for create user
+		preparedStatementForCreateUser.setInt(1, id);
+		preparedStatementForCreateUser.setString(2, leader.getFullname());
+		preparedStatementForCreateUser.setString(3, leader.getEmail());
+		preparedStatementForCreateUser.setString(4, leader.getPassword());
+		preparedStatementForCreateUser.setString(5, "leader");
+
+		preparedStatementForCreateLeader.setInt(1, id);
+		preparedStatementForCreateLeader.setInt(2, leader.getNumberOfProject());
+
+		// execute query
+		preparedStatementForCreateUser.executeUpdate();
+		preparedStatementForCreateLeader.executeUpdate();
+	}
+
 }

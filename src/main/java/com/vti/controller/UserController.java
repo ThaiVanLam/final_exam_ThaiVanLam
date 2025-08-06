@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.vti.dto.Leader;
 import com.vti.dto.Member;
 import com.vti.dto.Project;
 import com.vti.dto.User;
@@ -27,5 +28,9 @@ public class UserController {
 
 	public void createMember(Member member) throws Exception {
 		userService.createMember(member);
+	}
+
+	public void createLeader(Leader leader) throws Exception {
+		userService.createLeader(leader);
 	}
 }
